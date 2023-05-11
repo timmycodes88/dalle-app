@@ -1,6 +1,6 @@
-import request from '../utils/request'
+import request from "../utils/request"
 
-const ENDPOINT = process.env.BACKEND_URL + 'http://localhost:5000/api/auth'
+const ENDPOINT = "http://localhost:3001/api/auth"
 
 /**
  * @typedef {Object} AuthData
@@ -26,14 +26,14 @@ const AuthAPI = {
    * @returns {Promise<AuthResponse> | Promise<Error>}
    */
   login: async ({ usernameOrEmail, password }) =>
-    request(ENDPOINT + '/login', { usernameOrEmail, password }),
+    request(ENDPOINT + "/login", { usernameOrEmail, password }),
   /**
    *
    * @param {AuthData} formData
    * @returns {Promise<AuthResponse> | Promise<Error>}
    */
   signup: async ({ username, email, password }) =>
-    request(ENDPOINT + '/signup', { username, email, password }),
+    request(ENDPOINT + "/signup", { username, email, password }),
 }
 
 export default AuthAPI

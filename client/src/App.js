@@ -1,22 +1,10 @@
-import tw from 'twin.macro'
-import { Link, Outlet, useLoaderData } from 'react-router-dom'
-
-/**
- * @returns {Promise<boolean>} Authenticated or not
- */
-export const appLoader = async () => {
-  //First thing get the user
-  const token = localStorage.getItem('token')
-
-  if (!token) return false
-  return true
-}
-
-/**@type {boolean} Authenticated or not */
-const useAppData = () => useLoaderData()
+import tw from "twin.macro"
+import { Link, Outlet } from "react-router-dom"
+import { useAppData } from "./routes/appRoute"
 
 export default function App() {
   const auth = useAppData()
+  console.log(auth)
   return (
     <Body>
       <Header>
@@ -24,13 +12,13 @@ export default function App() {
         <Nav>
           {auth ? (
             <>
-              <NavItem to='/'>Home</NavItem>
-              <NavItem to='/logout'>Logout</NavItem>
+              <NavItem to="/">Home</NavItem>
+              <NavItem to="/logout">Logout</NavItem>
             </>
           ) : (
             <>
-              <NavItem to='/'>Home</NavItem>
-              <NavItem to='/get-in'>Get In</NavItem>
+              <NavItem to="/">Home</NavItem>
+              <NavItem to="/get-in">Get In</NavItem>
             </>
           )}
         </Nav>
