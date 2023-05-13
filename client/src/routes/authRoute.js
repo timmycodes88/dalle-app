@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom"
+import { redirect, useActionData } from "react-router-dom"
 import AuthAPI from "../api/AuthAPI"
 import { LOGIN } from "../pages/AuthForm"
 
@@ -17,16 +17,19 @@ export const authAction = async ({ request }) => {
       return "Fill in bruh"
     }
   }
-
+  /**@type {import("../api/AuthAPI").AuthResponse} */
   const { user, token, error } =
     type === LOGIN
       ? await AuthAPI.login({ usernameOrEmail, password })
       : await AuthAPI.signup({ username, email, password })
-  if (error) {
-    console.log(error)
-    return error
-  }
+  if (error) return error
   console.log(user)
   localStorage.setItem("token", token)
   return redirect("/")
 }
+
+/**
+ *
+ * @returns {null | string} Form error string on submittion
+ */
+export const useAuthError = () => useActionData()

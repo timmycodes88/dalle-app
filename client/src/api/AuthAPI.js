@@ -16,6 +16,7 @@ const ENDPOINT = "http://localhost:3001/api/auth"
  * @typedef {Object} AuthResponse
  * @property {User} user
  * @property {string} token
+ * @property {string} error
  *
  */
 
